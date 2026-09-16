@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Aula Inquieta · Enseñar y aprender en tiempos de IA</title>
+
+  <meta
+    name="description"
+    content="Aula Inquieta. Taller para profesionales de la educación. Enseñar y aprender en tiempos de IA."
+  >
+
+  <style>
+    :root {
+      --azul: #102c4c;
+      --azul-2: #183d62;
+      --marfil: #f7f1e5;
+      --manteca: #eee3c9;
+      --blanco: #fffdf8;
+      --texto: #172536;
+      --linea: rgba(16, 44, 76, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--marfil);
+      color: var(--texto);
+      line-height: 1.55;
+    }
+
+    section {
+      padding: 90px 7vw;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      padding: 28px 7vw;
+    }
+
+    .brand {
+      color: var(--blanco);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--azul);
+      color: var(--blanco);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      right: -180px;
+      bottom: -180px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0.8;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .hero-description {
+      max-width: 680px;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      margin-bottom: 34px;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .hero-info {
+      font-size: 1rem;
+      margin-bottom: 34px;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--manteca);
+      color: var(--azul);
+      padding: 16px 25px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--blanco);
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--azul);
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      color: var(--azul);
+      margin-bottom: 32px;
+    }
+
+    .lead {
+      font-size: clamp(1.25rem, 2.3vw, 1.65rem);
+      max-width: 850px;
+    }
+
+    .why {
+      background: var(--blanco);
+    }
+
+    .why-text {
+      max-width: 900px;
+    }
+
+    .why-text p {
+      margin-bottom: 24px;
+    }
+
+    .highlight {
+      border-left: 4px solid var(--azul);
+      padding-left: 24px;
+      margin-top: 40px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.3;
+      color: var(--azul);
+    }
+
+    .questions {
+      background: var(--manteca);
+    }
+
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 50px;
+      border-top: 1px solid var(--linea);
+    }
+
+    .question {
+      padding: 30px 30px 30px 0;
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .question:nth-child(even) {
+      padding-left: 30px;
+      border-left: 1px solid var(--linea);
+    }
+
+    .question-number {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--azul);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .question h3 {
+      font-size: 1.35rem;
+      color: var(--azul);
+      margin-bottom: 10px;
+    }
+
+    .journey {
+      background: var(--blanco);
+    }
+
+    .journey-intro {
+      max-width: 700px;
+      margin-bottom: 50px;
+      font-size: 1.2rem;
+    }
+
+    .journey-list {
+      border-top: 1px solid var(--linea);
+    }
+
+    .journey-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 30px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .journey-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--azul);
+    }
+
+    .journey-item h3 {
+      color: var(--azul);
+      font-size: 1.5rem;
+      margin-bottom: 7px;
+    }
+
+    .team {
+      background: var(--azul);
+      color: var(--blanco);
+    }
+
+    .team .section-label,
+    .team h2 {
+      color: var(--blanco);
+    }
+
+    .team-intro {
+      max-width: 850px;
+      font-size: 1.2rem;
+      margin-bottom: 45px;
+    }
+
+    .team-specialty {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .names {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-bottom: 35px;
+    }
+
+    .name {
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 22px;
+    }
+
+    .name h3 {
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+
+    .team-description {
+      max-width: 850px;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .vision {
+      background: var(--manteca);
+    }
+
+    .vision-phrase {
+      max-width: 950px;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--azul);
+      margin-bottom: 50px;
+    }
+
+    .vision-text {
+      max-width: 850px;
+      font-size: 1.2rem;
+    }
+
+    .vision-text p {
+      margin-bottom: 20px;
+    }
+
+    .proposal {
+      background: var(--blanco);
+    }
+
+    .proposal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 45px;
+      border-top: 1px solid var(--linea);
+    }
+
+    .proposal-item {
+      padding: 28px 28px 28px 0;
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .proposal-item:nth-child(even) {
+      padding-left: 28px;
+      border-left: 1px solid var(--linea);
+    }
+
+    .proposal-item h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--azul);
+      margin-bottom: 8px;
+    }
+
+    .enroll {
+      background: var(--azul);
+      color: var(--blanco);
+      text-align: center;
+    }
+
+    .enroll .section-label,
+    .enroll h2 {
+      color: var(--blanco);
+    }
+
+    .enroll h2 {
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .date {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      margin-bottom: 12px;
+    }
+
+    .time {
+      font-size: 1.2rem;
+      margin-bottom: 38px;
+    }
+
+    .price {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .installments {
+      margin-bottom: 35px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .enroll-note {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    footer {
+      background: #0b2037;
+      color: rgba(255,255,255,0.65);
+      padding: 30px 7vw;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+
+      section {
+        padding: 70px 7vw;
+      }
+
+      header {
+        padding: 22px 7vw;
+      }
+
+      .hero {
+        min-height: 100svh;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 15vw, 5rem);
+      }
+
+      .questions-grid,
+      .proposal-grid,
+      .names {
+        grid-template-columns: 1fr;
+      }
+
+      .question,
+      .question:nth-child(even),
+      .proposal-item,
+      .proposal-item:nth-child(even) {
+        padding-left: 0;
+        padding-right: 0;
+        border-left: none;
+      }
+
+      .journey-item {
+        grid-template-columns: 55px 1fr;
+        gap: 15px;
+      }
+
+      .journey-number {
+        font-size: 1.5rem;
+      }
+
+      .vision-phrase {
+        font-size: 2.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">AULA INQUIETA</div>
+  </header>
+
+
+  <!-- 01. PORTADA -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="eyebrow">
+        Taller para profesionales de la educación
+      </div>
+
+      <h1>
+        <span>ENSEÑAR Y</span>
+        <span>APRENDER</span>
+        <span>EN TIEMPOS DE IA</span>
+      </h1>
+
+      <p class="hero-description">
+        La inteligencia artificial ya forma parte de nuestras aulas.
+        Y con ella aparecen nuevas preguntas sobre enseñar, aprender
+        y el lugar que queremos darle a la tecnología.
+      </p>
+
+      <p class="hero-info">
+        Inicio: sábado 26 de septiembre · 16 a 18 h · 4 encuentros
+      </p>
+
+      <a
+        class="button"
+        href="https://forms.gle/RJkjKQTH8WKyQzue9"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        QUIERO INSCRIBIRME
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- 02. POR QUÉ ESTE TALLER -->
+  <section class="why">
+    <div class="container">
+
+      <div class="section-label">
+        ¿Por qué este taller?
+      </div>
+
+      <h2>
+        La IA ya está en la vida de nuestros estudiantes.
+      </h2>
+
+      <div class="why-text lead">
+
+        <p>
+          Al mismo tiempo, distintos sistemas educativos están revisando
+          el lugar de los dispositivos y recuperando espacios para la
+          lectura, la escritura, la conversación, la atención y el
+          aprendizaje sin pantallas.
+        </p>
+
+        <p>
+          No se trata de elegir entre tecnología sí o no.
+          Se trata de construir criterios para decidir cuándo aporta,
+          cuándo limita y cuándo no hace falta.
+        </p>
+
+      </div>
+
+      <div class="highlight">
+        La pregunta no es solamente qué puede hacer la IA.
+        También es qué queremos hacer nosotros con ella.
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 03. QUÉ VAMOS A TRABAJAR -->
+  <section class="questions">
+    <div class="container">
+
+      <div class="section-label">
+        ¿Qué vamos a trabajar?
+      </div>
+
+      <h2>
+        Cinco preguntas para pensar la práctica.
+      </h2>
+
+      <div class="questions-grid">
+
+        <article class="question">
+          <div class="question-number">01</div>
+          <h3>IA, enseñanza y aprendizaje</h3>
+          <p>
+            ¿Qué está cambiando y qué nuevas preguntas aparecen?
+          </p>
+        </article>
+
+        <article class="question">
+          <div class="question-number">02</div>
+          <h3>Pensamiento crítico</h3>
+          <p>
+            ¿Cómo analizar lo que produce la IA y revisar sus respuestas?
+          </p>
+        </article>
+
+        <article class="question">
+          <div class="question-number">03</div>
+          <h3>Tecnología y pantallas</h3>
+          <p>
+            ¿Cuándo aportan y cuándo otras experiencias pueden ser más valiosas?
+          </p>
+        </article>
+
+        <article class="question">
+          <div class="question-number">04</div>
+          <h3>Rol docente</h3>
+          <p>
+            ¿Qué podemos delegar en la tecnología y qué sigue necesitando
+            nuestra intervención?
+          </p>
+        </article>
+
+        <article class="question">
+          <div class="question-number">05</div>
+          <h3>Decisiones pedagógicas</h3>
+          <p>
+            ¿Para qué, cuándo y cómo incorporar tecnología de manera responsable?
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 04. EL RECORRIDO -->
+  <section class="journey">
+    <div class="container">
+
+      <div class="section-label">
+        El recorrido
+      </div>
+
+      <h2>
+        Cuatro encuentros.
+      </h2>
+
+      <p class="journey-intro">
+        Pensar, analizar y llevar estas preguntas a la práctica.
+      </p>
+
+      <div class="journey-list">
+
+        <article class="journey-item">
+          <div class="journey-number">01</div>
+          <div>
+            <h3>¿Qué está cambiando con la IA?</h3>
+            <p>
+              IA, educación y nuevas formas de enseñar y aprender.
+            </p>
+          </div>
+        </article>
+
+        <article class="journey-item">
+          <div class="journey-number">02</div>
+          <div>
+            <h3>¿Qué significa enseñar y aprender ahora?</h3>
+            <p>
+              Rol docente, estudiantes, conocimiento y pensamiento crítico.
+            </p>
+          </div>
+        </article>
+
+        <article class="journey-item">
+          <div class="journey-number">03</div>
+          <div>
+            <h3>¿Podemos confiar en lo que produce la IA?</h3>
+            <p>
+              Errores, sesgos, información y criterios para revisar sus respuestas.
+            </p>
+          </div>
+        </article>
+
+        <article class="journey-item">
+          <div class="journey-number">04</div>
+          <div>
+            <h3>¿Y ahora qué hacemos con todo esto?</h3>
+            <p>
+              Tecnología, pantallas y decisiones concretas para la práctica educativa.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 05. QUIÉNES SOMOS -->
+  <section class="team">
+    <div class="container">
+
+      <div class="section-label">
+        Quiénes somos
+      </div>
+
+      <h2>
+        Educación, formación y liderazgo en IAG.
+      </h2>
+
+      <p class="team-specialty">
+        Líderes en Inteligencia Artificial Generativa (IAG)
+      </p>
+
+      <div class="names">
+
+        <div class="name">
+          <h3>Prof. Esp. Valeria Martín Tello</h3>
+        </div>
+
+        <div class="name">
+          <h3>Prof. Esp. Andrea Lunello</h3>
+        </div>
+
+      </div>
+
+      <p class="team-description">
+        Diseñamos esta propuesta desde nuestra experiencia en educación
+        y formación docente, con una mirada pedagógica, crítica y
+        responsable sobre el uso de la inteligencia artificial.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- 06. NUESTRA MIRADA -->
+  <section class="vision">
+    <div class="container">
+
+      <div class="section-label">
+        Nuestra mirada
+      </div>
+
+      <div class="vision-phrase">
+        No se trata de usar más tecnología.
+        Se trata de decidir qué merece tecnología
+        y qué merece nuestra presencia.
+      </div>
+
+      <div class="vision-text">
+
+        <p>
+          Hay experiencias que la tecnología puede potenciar.
+        </p>
+
+        <p>
+          Y hay otras que necesitan lectura, escritura,
+          conversación, atención, vínculo y presencia.
+        </p>
+
+        <p>
+          El objetivo no es aprender una herramienta más.
+          Es construir criterios para tomar mejores decisiones pedagógicas.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 07. LA PROPUESTA -->
+  <section class="proposal">
+    <div class="container">
+
+      <div class="section-label">
+        La propuesta
+      </div>
+
+      <h2>
+        Lo que necesitás saber.
+      </h2>
+
+      <div class="proposal-grid">
+
+        <article class="proposal-item">
+          <h3>Destinatarios</h3>
+          <p>
+            Docentes y profesionales de la educación de todos los niveles.
+          </p>
+        </article>
+
+        <article class="proposal-item">
+          <h3>Sin conocimientos previos</h3>
+          <p>
+            No necesitás experiencia previa con inteligencia artificial.
+          </p>
+        </article>
+
+        <article class="proposal-item">
+          <h3>Modalidad</h3>
+          <p>
+            4 encuentros sincrónicos de 2 horas + 12 horas de trabajo
+            asincrónico con tutoría personalizada.
+          </p>
+        </article>
+
+        <article class="proposal-item">
+          <h3>Incluye</h3>
+          <p>
+            Materiales digitales, actividades de aplicación,
+            tutoría personalizada y certificado digital de participación.
+          </p>
+        </article>
+
+        <article class="proposal-item">
+          <h3>Duración</h3>
+          <p>
+            8 horas sincrónicas + 12 horas de trabajo asincrónico
+            con tutoría personalizada.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 08. INSCRIPCIÓN -->
+  <section class="enroll">
+    <div class="container">
+
+      <div class="section-label">
+        Inscripción
+      </div>
+
+      <h2>
+        Empezamos el sábado 26 de septiembre.
+      </h2>
+
+      <div class="date">
+        Sábado 26 de septiembre
+      </div>
+
+      <div class="time">
+        16 a 18 h
+      </div>
+
+      <div class="price">
+        $40.000
+      </div>
+
+      <div class="installments">
+        o 2 cuotas de $25.000
+      </div>
+
+      <a
+        class="button"
+        href="https://forms.gle/RJkjKQTH8WKyQzue9"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        QUIERO INSCRIBIRME
+      </a>
+
+      <p class="enroll-note">
+        Cupos sujetos a inscripción.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      AULA INQUIETA
+    </div>
+  </footer>
+
+</body>
+</html>
